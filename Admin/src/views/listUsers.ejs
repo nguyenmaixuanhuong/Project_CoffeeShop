@@ -1,0 +1,52 @@
+<div class="col-9 col-lg-10 p-0 listusers" style="background-color: rgb(253, 253, 253); min-height: max-content;">
+    <div class="p-3 text-center">
+        <h3> DANH SÁCH KHÁCH HÀNG</h3>
+    </div>
+    <div class="px-3" >
+        <table class="table table-striped p-3 border">
+            <thead class="thead-dark">
+                <tr class="text-center">
+                    <th scope="col">STT</th>
+                    <th scope="col">TÊN KHÁCH HÀNG</th>
+                    <th scope="col">SỐ ĐIỆN THOẠI</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.forEach((user, i)=> {%>
+                    <tr class="text-center ">
+                        <th style="padding: 15px;">
+                            <%= i+1 %>
+                        </th>
+                        <td class="text-left " style="padding-left: 18%;">
+                            <%= user.username %>
+                        </td>
+                        <td>
+                            <%= user.sdt %>
+                        </td>
+                    </tr>
+                    <% }) %>
+            </tbody>
+        </table>
+    </div>
+    <nav aria-label="Page navigation example" class="d-flex justify-content-center paginationNav ">
+        <ul class="pagination ">
+            <li class="page-item ">
+                <a class="page-link text-dark" href="/admin/user/listusers/?page=<%= page > 1 ? page -1 : 1 %>"
+                    aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <%for(i=1 ; i <=totalPage ; i++) {%>
+                <li class="page-item "><a class="page-link text-dark" href="/admin/user/listusers/?page=<%=i%>">
+                        <%=i%>
+                    </a></li>
+                <%} %>
+                    <li class="page-item ">
+                        <a class="page-link text-dark"
+                            href="/admin/user/listusers/?page=<%= page < totalPage ?page + 1 :page%>" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+        </ul>
+    </nav>
+</div>
